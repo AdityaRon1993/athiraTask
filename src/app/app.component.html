@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="search">
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Search For email address" value="" #input>
+        </mat-form-field>
+    </div>
+    <ng-container *ngFor = "let data of dataToShow | sort : input.value">
+        <mat-accordion>    
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{data.email}}
+                </mat-panel-title>
+                <!-- <mat-panel-description>
+                  Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                </mat-panel-description> -->
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+
+            <mat-grid-list cols="2" rowHeight="1:1">
+                <mat-grid-tile>
+                    <span class="img">
+                        <img [src]='data.avatar' alt="">
+                    </span>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <span class="name">
+                        {{data.first_name}}&nbsp;
+                        {{data.last_name}}
+                      </span>
+                </mat-grid-tile>
+                
+            </mat-grid-list>
+
+            </mat-expansion-panel>
+          </mat-accordion>
+          <mat-divider></mat-divider>
+    </ng-container>
+    <ng-container *ngIf=" dataToShow &&  (dataToShow | sort : input.value ).length == 0">
+        <h4>
+            {{input.value}} - doesnot exist
+        </h4>
+
+    </ng-container>
+      
+</div>
